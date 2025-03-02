@@ -1,9 +1,18 @@
 let express = require("express");
 let app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const {Server} = require("socket.io");
+const cors = require("cors");
 let db = require("./database.ts");
 
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+})
+
+app.use(cors())
 io.on("connection", (socket) => {
   socket.on("InitConnect", async (msg) => {
     socket.join(`roomPrefix${msg.team}`);
