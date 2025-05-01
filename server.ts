@@ -1,18 +1,21 @@
 let express = require("express");
 let app = express();
 const server = require("http").Server(app);
-const {Server} = require("socket.io");
+const { Server } = require("socket.io");
 const cors = require("cors");
 let db = require("./database.ts");
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-})
+const io = new Server(server);
 
-app.use(cors())
+app.use(cors());
+
+io.attach(server, {
+  cors: {
+    origin: "https://emp-next-five.vercel.app",
+    credentials: true,
+  },
+});
+
 io.on("connection", (socket) => {
   socket.on("InitConnect", async (msg) => {
     socket.join(`roomPrefix${msg.team}`);
