@@ -14,12 +14,12 @@ app.use(
   })
 );
 
-io.attach(server, {
-  cors: {
-    origin: "https://emp-next-five.vercel.app",
-    credentials: true,
-  },
-});
+// io.attach(server, {
+//   cors: {
+//     origin: "https://emp-next-five.vercel.app",
+//     credentials: true,
+//   },
+// });
 
 io.on("connection", (socket) => {
   socket.on("InitConnect", async (msg) => {
