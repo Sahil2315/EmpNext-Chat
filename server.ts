@@ -5,7 +5,7 @@ const socket = require("socket.io");
 const cors = require("cors");
 let db = require("./database.ts");
 
-const io = socket();
+const io = socket(server);
 
 app.use(
   cors({
