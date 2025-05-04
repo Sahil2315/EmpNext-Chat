@@ -1,11 +1,16 @@
 let express = require("express");
 let app = express();
 const server = require("http").Server(app);
-const socket = require("socket.io");
+const socketIO = require("socket.io");
 const cors = require("cors");
 let db = require("./database.ts");
 
-const io = socket(server);
+const io = socketIO(server, {
+  cors: {
+    origin: "https://emp-next-five.vercel.app",
+    credentials: true,
+  },
+});
 
 app.use(
   cors({
