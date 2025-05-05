@@ -7,14 +7,14 @@ let db = require("./database.ts");
 
 const io = socketIO(server, {
   cors: {
-    origin: "https://emp-next-five.vercel.app",
+    origin: "https://emplois.sahilnigam.online",
     credentials: true,
   },
 });
 
 app.use(
   cors({
-    origin: "https://emp-next-five.vercel.app",
+    origin: "https://emplois.sahilnigam.online",
     credentials: true,
   })
 );
